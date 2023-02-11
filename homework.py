@@ -121,10 +121,7 @@ def read_package(workout_type: str, data: List[float]) -> Training:
         'RUN': Running,
         'WLK': SportsWalking
     }
-    if workout_type in type_data:
-        return type_data[workout_type](*data)
-    else:
-        print('Ошибка: некорректный/неизвестный тип тренировки.')
+    return type_data[workout_type](*data)
 
 
 def main(training: Training) -> None:
@@ -141,5 +138,10 @@ if __name__ == '__main__':
     ]
 
     for workout_type, data in packages:
-        training = read_package(workout_type, data)
-        main(training)
+        try:
+            training = read_package(workout_type, data)
+            main(training)
+        except KeyError:
+            print('Неизвестный тип тренировки')
+        except TypeError:
+            print('Ошибка ввода данных')
