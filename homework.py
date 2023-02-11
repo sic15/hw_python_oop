@@ -124,7 +124,7 @@ def read_package(workout_type: str, data: List[float]) -> Training:
     if workout_type in type_data:
         return type_data[workout_type](*data)
     else:
-        print('Неизвестный тип тренировки')
+        print('Ошибка: некорректный/неизвестный тип тренировки.')
 
 
 def main(training: Training) -> None:
